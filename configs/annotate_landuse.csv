@@ -1,0 +1,14 @@
+Description,Target,Expression
+#,, annotate landuse table after import
+Employment adjustment for WFH and in-commuters,emp_adjust,land_use.JURCODE.map(TCADJUST)
+Adjusted Industrial Employment,ADJ_INDEMP,emp_adjust * land_use.INDEMP
+Adjusted Retail Employment,ADJ_RETEMP,emp_adjust * land_use.RETEMP
+Adjusted Other Employment,ADJ_OTHEMP,emp_adjust * land_use.OTHEMP
+Adjusted Office Employment,ADJ_OFFEMP,emp_adjust * land_use.OFFEMP
+household_density,household_density,land_use.HH / (land_use.LANDAREA * 640)
+employment_density,employment_density,land_use.TOTEMP / (land_use.LANDAREA * 640)
+,employment_density,employment_density.fillna(0)
+density_index,density_index,(household_density *employment_density) / (household_density + employment_density).clip(lower=1)
+topology (assume flat),TOPOLOGY,1
+zero out land use for zero area,Park_Acres,"np.where(land_use.LANDAREA==0,0,land_use.Park_Acres)"
+zero out land use for zero area,GC_Acres,"np.where(land_use.LANDAREA==0,0,land_use.GC_Acres)"

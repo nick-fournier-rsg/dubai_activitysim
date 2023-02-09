@@ -1,0 +1,37 @@
+Label,Description,Expression,work_at_home,work_away_from_home
+#util_work_from_home_constant,Constant for Working from home,1,coef_work_from_home_constant,0
+util_full_time_worker,Full time worker (1 if true),@df.pemploy==PEMPLOY_FULL,coef_full_time_worker,0
+util_female_worker,Female Worker,@df.SEX==2,coef_female_worker,0
+util_female_worker_preschool_child,Female worker with a Preschool Child in Household,"@df.SEX==2 & other_than(df.household_id, df.ptype == PTYPE_SCHOOL)",coef_female_worker_preschool_child,0
+util_access_to_workplaces,Accessibility to workplaces of the home mgra,@df.TotalAcc,coef_access_to_workplaces,0
+util_non_working_adult_in_hh,Presence of Non Working Adult in the Household,"@other_than(df.household_id, df.ptype == PTYPE_NONWORK)",coef_non_working_adult_in_hh,0
+util_education_ba_plus,Education Level Bachelors or higher degree,0,coef_education_ba_plus,0
+util_low_income,Household income Less than 30K,@df.income < 30000,coef_low_income,0
+util_age_lt_35,Age Group - Less than 35 years,@df.age < 35,coef_age_lt_35,0
+util_age_35_to_45,Age Group - 35 yrs to 45 yrs,"@df.age.between(35, 45)",coef_age_35_to_45,0
+util_age_45_to_55,Age Group - 45 yrs to 55 yrs,"@df.age.between(45, 55)",coef_age_45_to_55,0
+util_age_55_to_65,Age Group - 55 yrs to 65 yrs,"@df.age.between(55, 65)",coef_age_55_to_65,0
+util_age_65_plus,Age Group - Older than 65yrs,@df.age > 65,coef_age_65_plus,0
+util_DC,DC Resident,@df.home_jurisdiction == 0,coef_DC,0
+util_Montgomery,Montgomery County Resident,@df.home_jurisdiction == 1,coef_Montgomery,0
+util_PrinceGeorges,Prince Georges County Resident,@df.home_jurisdiction == 2,coef_PrinceGeorges,0
+util_Arlington,Arlington County Resident,@df.home_jurisdiction == 3,coef_Arlington,0
+util_Alexandria,Alexandria County Resident,@df.home_jurisdiction == 4,coef_Alexandria,0
+util_Fairfax,Fairfax County Resident,@df.home_jurisdiction == 5,coef_Fairfax,0
+util_Loudoun,Loudoun County Resident,@df.home_jurisdiction == 6,coef_Loudoun,0
+util_PrinceWilliam,Prince William County Resident,@df.home_jurisdiction == 7,coef_PrinceWilliam,0
+util_Frederick,Frederick County Resident,@df.home_jurisdiction == 9,coef_Frederick,0
+util_Howard,Howard County Resident,@df.home_jurisdiction == 10,coef_Howard,0
+util_AnneArundel,Anne Arundel County Resident,@df.home_jurisdiction == 11,coef_AnneArundel,0
+util_Charles,Charles County Resident,@df.home_jurisdiction == 12,coef_Charles,0
+util_Carroll,Carroll County Resident,@df.home_jurisdiction == 14,coef_Carroll,0
+util_Calvert,Calvert County Resident,@df.home_jurisdiction == 15,coef_Calvert,0
+util_StMarys,St Marys County Resident,@df.home_jurisdiction == 16,coef_StMarys,0
+util_KingGeorge,King George County Resident,@df.home_jurisdiction == 17,coef_KingGeorge,0
+util_Fredericksburg,Fredricksburg County Resident,@df.home_jurisdiction == 18,coef_Fredericksburg,0
+util_Stafford,Stafford County Resident,@df.home_jurisdiction == 19,coef_Stafford,0
+util_Spotsylvania,Spotsylvania County Resident,@df.home_jurisdiction == 20,coef_Spotsylvania,0
+util_Fauquier,Fauquier County Resident,@df.home_jurisdiction == 21,coef_Fauquier,0
+util_Clarke,Clarke County Resident,@df.home_jurisdiction == 22,coef_Clarke,0
+util_Jefferson,Jefferson County Resident,@df.home_jurisdiction == 23,coef_Jefferson,0
+

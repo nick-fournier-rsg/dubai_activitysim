@@ -1,0 +1,49 @@
+Label,Description,Expression,cars0,cars1,cars2,cars3,cars4
+util_drivers_1,1 Adults (age 16+),num_drivers==1,,coef_cars1_drivers_1,coef_cars2_drivers_1,coef_cars3_drivers_1,coef_cars4_drivers_1
+util_drivers_2,2 Adults (age 16+),num_drivers==2,,coef_cars1_drivers_2,coef_cars2_drivers_2,coef_cars3_drivers_2,coef_cars4_drivers_2
+util_drivers_3,3 Adults (age 16+),num_drivers==3,,coef_cars1_drivers_3,coef_cars2_drivers_3,coef_cars3_drivers_3,coef_cars4_drivers_3
+util_drivers_4_up,4+ Adults (age 16+),num_drivers>3,,coef_cars1_drivers_4_up,coef_cars2_drivers_4_up,coef_cars3_drivers_4_up,coef_cars4_drivers_4_up
+util_worker_per_driver,Ratio of worker to driver,"@np.where(df.num_drivers>0, df.num_workers/df.num_drivers, 0)",,coef_cars1_worker_per_driver,coef_cars2_worker_per_driver,coef_cars3_worker_per_driver,coef_cars4_worker_per_driver
+util_presence_children_0_15,Presence of children age 0-15,(num_young_children+num_children_5_to_15)>0,,coef_cars1_presence_children_0_15,coef_cars2_presence_children_0_15,coef_cars3_presence_children_0_15,coef_cars4_presence_children_0_15
+util_presence_children_0_17,Presence of children age 0-17,(num_young_children+num_children_5_to_15+num_children_16_to_17)>0,,coef_cars1_presence_children_0_17,coef_cars2_presence_children_0_17,coef_cars3_presence_children_0_17,coef_cars4_presence_children_0_17
+util_children_16_17_per_driver,Ratio of driving children age 16_17 per driver,"@np.where(df.num_drivers>0, df.num_children_16_to_17/df.num_drivers, 0)",,coef_cars1_children_16_17_per_driver,coef_cars2_children_16_17_per_driver,coef_cars3_children_16_17_per_driver,coef_cars4_children_16_17_per_driver
+util_persons_18_24_per_driver,Ratio of persons age 18-24 per driver,"@np.where(df.num_drivers>0, df.num_college_age/df.num_drivers, 0)",,coef_cars1_persons_18_24_per_driver,coef_cars2_persons_18_24_per_driver,coef_cars34_persons_18_24_per_driver,coef_cars34_persons_18_24_per_driver
+util_persons_25_34_per_driver,Ratio of persons age 25-34 per driver,"@np.where(df.num_drivers>0, df.num_young_adults/df.num_drivers, 0)",,coef_cars1_persons_25_34_per_driver,coef_cars2_persons_25_34_per_driver,coef_cars3_persons_25_34_per_driver,coef_cars4_persons_25_34_per_driver
+util_hh_income_0_25k,"Household income, $0-25k",income_in_thousands<25,,0,0,0,0
+util_hh_income_25_50k,"Household income, $25-50k",income_in_thousands>=25 & income_in_thousands<50,,coef_cars1_hh_income_25_50k,coef_cars2_hh_income_25_50k,coef_cars34_hh_income_25_50k,coef_cars34_hh_income_25_50k
+util_hh_income_50_100k,"Household income, $50-100k",income_in_thousands>=50 & income_in_thousands<100,,coef_cars1_hh_income_50_100k,coef_cars2_hh_income_50_100k,coef_cars34_hh_income_50_100k,coef_cars34_hh_income_50_100k
+util_hh_income_100_150k,"Household income, $100-150k",income_in_thousands>=100 & income_in_thousands<150,,coef_cars1_hh_income_100_150k,coef_cars2_hh_income_100_150k,coef_cars34_hh_income_100_150k,coef_cars34_hh_income_100_150k
+util_hh_income_150_up,"Household income, $150 and up",income_in_thousands>=150,,coef_cars1_hh_income_150_up,coef_cars2_hh_income_150_up,coef_cars34_hh_income_150_up,coef_cars34_hh_income_150_up
+util_density,Density index,@df.density_index,,coef_cars1234_density,coef_cars1234_density,coef_cars1234_density,coef_cars1234_density
+util_retail_transit_no_workers,"Retail accessibility (0.66*PK + 0.34*OP) by transit, if 0 workers",(num_workers==0)*(0.66*trPkRetail+0.34*trOpRetail),,coef_cars1_retail_transit_no_workers,coef_cars2_retail_transit_no_workers,coef_cars34_retail_transit_no_workers,coef_cars34_retail_transit_no_workers
+util_retail_transit_workers,"Retail accessibility (0.66*PK + 0.34*OP) by transit, if 1+ workers",(num_workers>0)*(0.66*trPkRetail+0.34*trOpRetail),,coef_cars1_retail_transit_workers,coef_cars2_retail_transit_workers,coef_cars3_retail_transit_workers,coef_cars4_retail_transit_workers
+util_retail_non_motor,Retail accessibility by non-motorized,nmRetail,,coef_cars1_retail_non_motor,coef_cars2_retail_non_motor,coef_cars3_retail_non_motor,coef_cars4_retail_non_motor
+util_auto_time_saving_per_worker,Auto time savings per worker to work,"@np.where(df.num_workers > 0, df.hh_work_auto_savings_ratio / df.num_workers, 0)",,coef_cars1_auto_time_saving_per_worker,coef_cars234_auto_time_saving_per_worker,coef_cars234_auto_time_saving_per_worker,coef_cars234_auto_time_saving_per_worker
+#util_urban_home,Urban home,home_is_urban==1,,coef_cars1_urban_home,coef_cars2_urban_home,coef_cars3_urban_home,coef_cars4_urban_home
+#util_suburban_home,Suburban home,home_is_urban==0,,coef_cars1_suburban_home,coef_cars2_suburban_home,coef_cars3_suburban_home,coef_cars4_suburban_home
+util_asc,Constants,1,,coef_cars1_asc,coef_cars2_asc,coef_cars3_asc,coef_cars4_asc
+util_DC,DC Resident,@df.home_jurisdiction == 0,coef_cars0_DC,coef_cars1_DC,0,0,0
+util_Arlington,Arlington County Resident,@df.home_jurisdiction == 3,coef_cars0_Arlington,coef_cars1_Arlington,0,0,0
+util_Alexandria,Alexandria County Resident,@df.home_jurisdiction == 4,coef_cars0_Alexandria,coef_cars1_Alexandria,0,0,0
+#,coef_cars1_DC,coef_cars2_DC,coef_cars3_DC,coef_cars4_DC
+# util_Montgomery,Montgomery County Resident,@df.home_jurisdiction == 1,0,coef_cars1_Montgomery,coef_cars2_Montgomery,coef_cars3_Montgomery,coef_cars4_Montgomery
+# util_PrinceGeorges,Prince Georges County Resident,@df.home_jurisdiction == 2,0,coef_cars1_PrinceGeorges,coef_cars2_PrinceGeorges,coef_cars3_PrinceGeorges,coef_cars4_PrinceGeorges
+# util_Arlington,Arlington County Resident,@df.home_jurisdiction == 3,0,coef_cars1_Arlington,coef_cars2_Arlington,coef_cars3_Arlington,coef_cars4_Arlington
+# util_Alexandria,Alexandria County Resident,@df.home_jurisdiction == 4,0,coef_cars1_Alexandria,coef_cars2_Alexandria,coef_cars3_Alexandria,coef_cars4_Alexandria
+# util_Fairfax,Fairfax County Resident,@df.home_jurisdiction == 5,0,coef_cars1_Fairfax,coef_cars2_Fairfax,coef_cars3_Fairfax,coef_cars4_Fairfax
+# util_Loudoun,Loudoun County Resident,@df.home_jurisdiction == 6,0,coef_cars1_Loudoun,coef_cars2_Loudoun,coef_cars3_Loudoun,coef_cars4_Loudoun
+# util_PrinceWilliam,Prince William County Resident,@df.home_jurisdiction == 7,0,coef_cars1_PrinceWilliam,coef_cars2_PrinceWilliam,coef_cars3_PrinceWilliam,coef_cars4_PrinceWilliam
+# util_Frederick,Frederick County Resident,@df.home_jurisdiction == 9,0,coef_cars1_Frederick,coef_cars2_Frederick,coef_cars3_Frederick,coef_cars4_Frederick
+# util_Howard,Howard County Resident,@df.home_jurisdiction == 10,0,coef_cars1_Howard,coef_cars2_Howard,coef_cars3_Howard,coef_cars4_Howard
+# util_AnneArundel,Anne Arundel County Resident,@df.home_jurisdiction == 11,0,coef_cars1_AnneArundel,coef_cars2_AnneArundel,coef_cars3_AnneArundel,coef_cars4_AnneArundel
+# util_Charles,Charles County Resident,@df.home_jurisdiction == 12,0,coef_cars1_Charles,coef_cars2_Charles,coef_cars3_Charles,coef_cars4_Charles
+# util_Carroll,Carroll County Resident,@df.home_jurisdiction == 14,0,coef_cars1_Carroll,coef_cars2_Carroll,coef_cars3_Carroll,coef_cars4_Carroll
+# util_Calvert,Calvert County Resident,@df.home_jurisdiction == 15,0,coef_cars1_Calvert,coef_cars2_Calvert,coef_cars3_Calvert,coef_cars4_Calvert
+# util_StMarys,St Marys County Resident,@df.home_jurisdiction == 16,0,coef_cars1_StMarys,coef_cars2_StMarys,coef_cars3_StMarys,coef_cars4_StMarys
+# util_KingGeorge,King George County Resident,@df.home_jurisdiction == 17,0,coef_cars1_KingGeorge,coef_cars2_KingGeorge,coef_cars3_KingGeorge,coef_cars4_KingGeorge
+# util_Fredericksburg,Fredricksburg County Resident,@df.home_jurisdiction == 18,0,coef_cars1_Fredericksburg,coef_cars2_Fredericksburg,coef_cars3_Fredericksburg,coef_cars4_Fredericksburg
+# util_Stafford,Stafford County Resident,@df.home_jurisdiction == 19,0,coef_cars1_Stafford,coef_cars2_Stafford,coef_cars3_Stafford,coef_cars4_Stafford
+# util_Spotsylvania,Spotsylvania County Resident,@df.home_jurisdiction == 20,0,coef_cars1_Spotsylvania,coef_cars2_Spotsylvania,coef_cars3_Spotsylvania,coef_cars4_Spotsylvania
+# util_Fauquier,Fauquier County Resident,@df.home_jurisdiction == 21,0,coef_cars1_Fauquier,coef_cars2_Fauquier,coef_cars3_Fauquier,coef_cars4_Fauquier
+# util_Clarke,Clarke County Resident,@df.home_jurisdiction == 22,0,coef_cars1_Clarke,coef_cars2_Clarke,coef_cars3_Clarke,coef_cars4_Clarke
+# util_Jefferson,Jefferson County Resident,@df.home_jurisdiction == 23,0,coef_cars1_Jefferson,coef_cars2_Jefferson,coef_cars3_Jefferson,coef_cars4_Jefferson

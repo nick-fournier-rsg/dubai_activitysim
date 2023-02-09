@@ -1,0 +1,53 @@
+Label,Description,Expression,coefficient
+local_dist,,_DIST@skims['DIST'],1
+dest_county,,_COUNTY@skims['COUNTY'],1
+util_dist,Distance,@_DIST,coef_dist
+util_dist_squared,"Distance squared, capped at 30 miles","@(_DIST).clip(0,30)**2",coef_dist_squared
+util_dist_cubed,"Distance cubed, capped at 30 miles","@(_DIST).clip(0,30)**3",coef_dist_cubed
+util_dist_logged,Distance logged,@(_DIST).apply(np.log1p),coef_dist_logged
+util_dist_low,"Distance,low income",@(df['income_segment']==WORK_LOW_SEGMENT_ID) * _DIST,coef_dist_low_inc
+util_dist_med,"Distance,med income",@(df['income_segment']==WORK_MED_SEGMENT_ID) * _DIST,coef_dist_med_inc
+util_dist_very_high,"Distance,very high income (>150)",@(df['income_segment']==WORK_VERYHIGH_SEGMENT_ID) * _DIST,coef_dist_very_high_inc
+util_dist_part_time,"Distance,part_time",@(df['pemploy']==2) * _DIST,coef_dist_part_time
+util_dist_student,"Distance,student",@(df['is_student']==True) * _DIST,coef_dist_student
+util_dist_young,"Distance,young person (<25)",@(df['young']==True) * _DIST,coef_dist_young
+util_dist_old,"Distance,young person (>65)",@(df['old']==True) * _DIST,coef_dist_old
+util_dist_zero_auto,"Distance,zero auto HH",@(df['auto_ownership']==0) * _DIST,coef_dist_zero_auto
+util_size_variable,Size variable,@(df['size_term'] * df['shadow_price_size_term_adjustment']).apply(np.log1p),1
+util_utility_adjustment,utility adjustment,@df['shadow_price_utility_adjustment'],1
+util_no_attractions,No attractions,@df['size_term']==0,-999
+#Calibration,,,
+util_Washington_Washington_ASC,Washington_Washington calibration constant,"@np.where((df['home_jurisdiction']==0) & (_COUNTY==0), 1, 0)",coef_Washington_Washington_asc
+util_Washington_Arlington_ASC,Washington_Arlington calibration constant,"@np.where((df['home_jurisdiction']==0) & (_COUNTY==3), 1, 0)",coef_Washington_Arlington_asc
+util_Montgomery_Washington_ASC,Montgomery_Washington calibration constant,"@np.where((df['home_jurisdiction']==1) & (_COUNTY==0), 1, 0)",coef_Montgomery_Washington_asc
+util_Montgomery_Montgomery_ASC,Montgomery_Montgomery calibration constant,"@np.where((df['home_jurisdiction']==1) & (_COUNTY==1), 1, 0)",coef_Montgomery_Montgomery_asc
+util_Montgomery_Fairfax_ASC,Montgomery_Fairfax calibration constant,"@np.where((df['home_jurisdiction']==1) & (_COUNTY==5), 1, 0)",coef_Montgomery_Fairfax_asc
+util_Montgomery_Howard_ASC,Montgomery_Howard calibration constant,"@np.where((df['home_jurisdiction']==1) & (_COUNTY==10), 1, 0)",coef_Montgomery_Howard_asc
+util_PrinceGeorges_Washington_ASC,PrinceGeorges_Washington calibration constant,"@np.where((df['home_jurisdiction']==2) & (_COUNTY==0), 1, 0)",coef_PrinceGeorges_Washington_asc
+util_PrinceGeorges_PrinceGeorges_ASC,PrinceGeorges_PrinceGeorges calibration constant,"@np.where((df['home_jurisdiction']==2) & (_COUNTY==2), 1, 0)",coef_PrinceGeorges_PrinceGeorges_asc
+util_PrinceGeorges_Arlington_ASC,PrinceGeorges_Arlington calibration constant,"@np.where((df['home_jurisdiction']==2) & (_COUNTY==3), 1, 0)",coef_PrinceGeorges_Arlington_asc
+util_PrinceGeorges_AnneArundel_ASC,PrinceGeorges_AnneArundel calibration constant,"@np.where((df['home_jurisdiction']==2) & (_COUNTY==11), 1, 0)",coef_PrinceGeorges_AnneArundel_asc
+util_Arlington_Washington_ASC,Arlington_Washington calibration constant,"@np.where((df['home_jurisdiction']==3) & (_COUNTY==0), 1, 0)",coef_Arlington_Washington_asc
+util_Arlington_Fairfax_ASC,Arlington_Fairfax calibration constant,"@np.where((df['home_jurisdiction']==3) & (_COUNTY==5), 1, 0)",coef_Arlington_Fairfax_asc
+util_Alexandria_Washington_ASC,Alexandria_Washington calibration constant,"@np.where((df['home_jurisdiction']==4) & (_COUNTY==0), 1, 0)",coef_Alexandria_Washington_asc
+util_Fairfax_Washington_ASC,Fairfax_Washington calibration constant,"@np.where((df['home_jurisdiction']==5) & (_COUNTY==0), 1, 0)",coef_Fairfax_Washington_asc
+util_Fairfax_Montgomery_ASC,Fairfax_Montgomery calibration constant,"@np.where((df['home_jurisdiction']==5) & (_COUNTY==1), 1, 0)",coef_Fairfax_Montgomery_asc
+util_Fairfax_Arlington_ASC,Fairfax_Arlington calibration constant,"@np.where((df['home_jurisdiction']==5) & (_COUNTY==3), 1, 0)",coef_Fairfax_Arlington_asc
+util_Fairfax_Fairfax_ASC,Fairfax_Fairfax calibration constant,"@np.where((df['home_jurisdiction']==5) & (_COUNTY==5), 1, 0)",coef_Fairfax_Fairfax_asc
+util_Loudoun_Montgomery_ASC,Loudoun_Montgomery calibration constant,"@np.where((df['home_jurisdiction']==6) & (_COUNTY==1), 1, 0)",coef_Loudoun_Montgomery_asc
+util_Loudoun_Fairfax_ASC,Loudoun_Fairfax calibration constant,"@np.where((df['home_jurisdiction']==6) & (_COUNTY==5), 1, 0)",coef_Loudoun_Fairfax_asc
+util_Loudoun_Loudoun_ASC,Loudoun_Loudoun calibration constant,"@np.where((df['home_jurisdiction']==6) & (_COUNTY==6), 1, 0)",coef_Loudoun_Loudoun_asc
+util_PrinceWilliam_Washington_ASC,PrinceWilliam_Washington calibration constant,"@np.where((df['home_jurisdiction']==7) & (_COUNTY==0), 1, 0)",coef_PrinceWilliam_Washington_asc
+util_PrinceWilliam_Fairfax_ASC,PrinceWilliam_Fairfax calibration constant,"@np.where((df['home_jurisdiction']==7) & (_COUNTY==5), 1, 0)",coef_PrinceWilliam_Fairfax_asc
+util_PrinceWilliam_PrinceWilliam_ASC,PrinceWilliam_PrinceWilliam calibration constant,"@np.where((df['home_jurisdiction']==7) & (_COUNTY==7), 1, 0)",coef_PrinceWilliam_PrinceWilliam_asc
+util_Frederick_Montgomery_ASC,Frederick_Montgomery calibration constant,"@np.where((df['home_jurisdiction']==9) & (_COUNTY==1), 1, 0)",coef_Frederick_Montgomery_asc
+util_Howard_Washington_ASC,Howard_Washington calibration constant,"@np.where((df['home_jurisdiction']==10) & (_COUNTY==0), 1, 0)",coef_Howard_Washington_asc
+util_Howard_PrinceGeorges_ASC,Howard_PrinceGeorges calibration constant,"@np.where((df['home_jurisdiction']==10) & (_COUNTY==2), 1, 0)",coef_Howard_PrinceGeorges_asc
+util_Howard_Howard_ASC,Howard_Howard calibration constant,"@np.where((df['home_jurisdiction']==10) & (_COUNTY==10), 1, 0)",coef_Howard_Howard_asc
+util_AnneArundel_Washington_ASC,AnneArundel_Washington calibration constant,"@np.where((df['home_jurisdiction']==11) & (_COUNTY==0), 1, 0)",coef_AnneArundel_Washington_asc
+util_AnneArundel_Howard_ASC,AnneArundel_Howard calibration constant,"@np.where((df['home_jurisdiction']==11) & (_COUNTY==10), 1, 0)",coef_AnneArundel_Howard_asc
+util_AnneArundel_AnneArundel_ASC,AnneArundel_AnneArundel calibration constant,"@np.where((df['home_jurisdiction']==11) & (_COUNTY==11), 1, 0)",coef_AnneArundel_AnneArundel_asc
+util_Charles_Washington_ASC,Charles_Washington calibration constant,"@np.where((df['home_jurisdiction']==12) & (_COUNTY==0), 1, 0)",coef_Charles_Washington_asc
+util_Charles_Charles_ASC,Charles_Charles calibration constant,"@np.where((df['home_jurisdiction']==12) & (_COUNTY==12), 1, 0)",coef_Charles_Charles_asc
+util_Calvert_Calvert_ASC,Calvert_Calvert calibration constant,"@np.where((df['home_jurisdiction']==15) & (_COUNTY==15), 1, 0)",coef_Calvert_Calvert_asc
+util_Fauquier_Fauquier_ASC,Fauquier_Fauquier calibration constant,"@np.where((df['home_jurisdiction']==21) & (_COUNTY==21), 1, 0)",coef_Fauquier_Fauquier_asc
