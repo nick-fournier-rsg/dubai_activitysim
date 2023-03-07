@@ -1,4 +1,6 @@
-data/full
+data/*
+output
+scripts/processing_data/
 
 sandbox/
 .idea
